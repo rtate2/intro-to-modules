@@ -1,16 +1,16 @@
+// import statements have to go at the top
+import cart from './cart.js';
+import utilities from '../helpers/utilities.js';
+
 const bookInfo = {
     price: 24.99,
     title: "Fifty Shades of Chicken",
     image: "./assets/images/book.jpg"
   };
 
-const printToDom = (divId, textToPrint) => {
-    const divContainer = document.getElementById(divId);
-    divContainer.innerHTML = textToPrint;
-};
-
 const addToCartEvent = () => {
-    console.log ('Added to cart');
+    cart.setCart(bookInfo);
+    cart.cartToDom();
 };
 
 const makeStore = () => {
@@ -20,7 +20,7 @@ const makeStore = () => {
     domString += `<img src=${bookInfo.image} alt="book cover"/>`;
     domString += '<button id="cart-button" class="btn btn-danger col-12">Add to cart</button>'
     
-    printToDom('store-container', domString);
+    utilities.printToDom('store-container', domString);
     document.getElementById('cart-button').addEventListener('click', addToCartEvent);
 }
 
